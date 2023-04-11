@@ -45,14 +45,15 @@ function animateA() {
 
 function reduceAHealth() {
   if (aHealth > 0) {
-    const healthBar = characterAHealthBars[aHealth - 1];
-    healthBar.classList.add('health-bar-low'); // Modifier la couleur de la barre de vie correspondante
+    const healthBar = healthBarB;
+    healthBar.style.backgroundColor = 'red'; // Modifier la couleur de la barre de vie du personnage A
     aHealth -= 1;
     if (aHealth === 0) {
       // Le personnage A est vaincu
     }
   }
 }
+
 
 // Animer le personnage A pour revenir à sa position initiale
 function animateBackA() {
