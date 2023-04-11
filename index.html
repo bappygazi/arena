@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Animation en JavaScript et HTML</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <style>
+      #animation-container {
+        position: relative;
+        width: 800px;
+        height: 400px;
+        background-image: url('backgrounddddddd.png');
+        background-size: cover;
+      }
+      #character-a {
+        position: absolute;
+        left: 200px;
+        top: 200px;
+        width: 100px;
+        height: 100px;
+        background-image: url('A.png');
+        background-size: contain;
+        background-repeat: no-repeat;
+      }
+      #character-b {
+        position: absolute;
+        right: 200px;
+        top: 200px;
+        width: 100px;
+        height: 100px;
+        background-image: url('B.png');
+        background-size: contain;
+        background-repeat: no-repeat;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="animation-container">
+      <div id="character-a"></div>
+      <div id="character-b"></div>
+    </div>
+    <div class="character-bar" id="character-a-bar">
+      <div class="health-bar"></div>
+      <div class="health-bar"></div>
+      <div class="health-bar"></div>
+    </div>
+    
+    <div class="character-bar" id="character-b-bar">
+      <div class="health-bar"></div>
+      <div class="health-bar"></div>
+      <div class="health-bar"></div>
+    </div>
+    
+    <script src="javascript.js"></script>
+  </body>
+</html>
