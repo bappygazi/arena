@@ -32,6 +32,8 @@ healthBarA.style.width = healthBarWidth + 'px';
 healthBarB.style.top = -healthBarHeight + 'px';
 healthBarB.style.width = healthBarWidth + 'px';
 
+
+
 // Animer le personnage A
 function animateA() {
   aPosition += 15; // Augmenter la position de 10 pixels à chaque frame
@@ -45,11 +47,22 @@ function animateA() {
 
 function reduceAHealth() {
   if (aHealth > 0) {
+    aHealth -= 1;
+    
+    if (aHealth === 2) {
+    const healthBar = healthBarB;
+    healthBar.style.backgroundColor = 'yellow'; // Modifier la couleur de la barre de vie du personnage A
+    }
+
+    if (aHealth === 2) {
+      const healthBar = healthBarB;
+      healthBar.style.backgroundColor = 'orange'; // Modifier la couleur de la barre de vie du personnage A
+      }
+
+    if (aHealth === 0) {
+    // Le personnage A est vaincu
     const healthBar = healthBarB;
     healthBar.style.backgroundColor = 'red'; // Modifier la couleur de la barre de vie du personnage A
-    aHealth -= 1;
-    if (aHealth === 0) {
-      // Le personnage A est vaincu
     }
   }
 }
@@ -95,3 +108,4 @@ function animateBackB() {
 
 // Lancer l'animation
 const animationInterval = setInterval(animateA, 50);
+
