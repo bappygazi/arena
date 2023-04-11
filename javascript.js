@@ -10,6 +10,7 @@ function getCharacterAHealthBars() {
 const characterAHealthBars = getCharacterAHealthBars();
 
 let aHealth = 3; // Niveau de santé initial du personnage A
+let bHealth = 3; // Niveau de santé initial du personnage B
 
 // Définir les positions initiales
 let aPosition = 200;
@@ -31,7 +32,6 @@ healthBarA.style.top = -healthBarHeight + 'px';
 healthBarA.style.width = healthBarWidth + 'px';
 healthBarB.style.top = -healthBarHeight + 'px';
 healthBarB.style.width = healthBarWidth + 'px';
-
 
 
 // Animer le personnage A
@@ -90,17 +90,40 @@ function animateB() {
     characterB.style.left = bPosition + 'px'; // Déplacer le personnage B
     if ((bDirection === 1 && bPosition >= bEnd) || (bDirection === -1 && bPosition <= bEnd)) { // Arrêter l'animation lorsque le personnage B atteint le personnage A
       clearInterval(bAnimationInterval);
+      reduceBHealth(); // Réduire la santé du personnage A lorsque le personnage B est atteint
       animateBackB(); // Faire revenir le personnage B à sa position initiale
     }
   }, 50);
 }
 
+function reduceBHealth() {
+  if (bHealth > 0) {
+    bHealth -= 1;
+    
+    if (bHealth === 2) {
+    const healthBar = healthBarA;
+    healthBar.style.backgroundColor = 'yellow'; // Modifier la couleur de la barre de vie du personnage A
+    }
+
+    if (aHealth === 2) {
+      const healthBar = healthBarA;
+      healthBar.style.backgroundColor = 'orange'; // Modifier la couleur de la barre de vie du personnage A
+      }
+
+    if (aHealth === 0) {
+    // Le personnage A est vaincu
+    const healthBar = healthBarA;
+    healthBar.style.backgroundColor = 'red'; // Modifier la couleur de la barre de vie du personnage A
+    }
+  }
+}
+
 // Animer le personnage B pour revenir à sa position initiale
 function animateBackB() {
   let backAnimationInterval = setInterval(function() {
-    bPosition -= 15; // Diminuer la position de 10 pixels à chaque frame
+    bPosition += 15; // Diminuer la position de 10 pixels à chaque frame
     characterB.style.left = bPosition + 'px'; // Déplacer le personnage B vers la gauche
-    if (bPosition <= 600) { // Arrêter l'animation lorsque le personnage B est revenu à sa position initiale
+    if (bPosition >= 600) { // Arrêter l'animation lorsque le personnage B est revenu à sa position initiale
       clearInterval(backAnimationInterval);
     }
   }, 50);
