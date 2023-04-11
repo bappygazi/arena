@@ -1,0 +1,17 @@
+.character-bar {
+  position: absolute;
+  top: 160px;
+  width: 200px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.health-bar {
+  width: calc(100% / 3);
+  height: 10px;
+  background-color: green;
+}
+
+.health-bar.red {
+  background-color: red;
+}
