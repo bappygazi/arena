@@ -7,10 +7,21 @@
 }
 
 .health-bar {
-  width: calc(100% / 3);
+  position: absolute;
   height: 10px;
+  width: 60px;
   background-color: green;
+  border: 1px solid black;
 }
+.health-bar-low {
+  position: absolute;
+  height: 10px;
+  width: 60px;
+  background-color: red;
+  border: 1px solid black;
+  z-index: 1;
+}
+
 
 .health-bar.red {
   background-color: red;
