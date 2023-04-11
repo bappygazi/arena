@@ -38,15 +38,15 @@ function animateA() {
   characterA.style.left = aPosition + 'px'; // Déplacer le personnage A vers la droite
   if (aPosition >= bPosition - 185) { // Arrêter l'animation lorsque le personnage A atteint le personnage B
     clearInterval(animationInterval);
-    animateBackA(); // Faire revenir le personnage A à sa position initiale
     reduceAHealth(); // Réduire la santé du personnage A lorsque le personnage B est atteint
+    animateBackA(); // Faire revenir le personnage A à sa position initiale
   }
 }
 
 function reduceAHealth() {
   if (aHealth > 0) {
     const healthBar = characterAHealthBars[aHealth - 1];
-    healthBar.style.backgroundColor = 'red'; // Modifier la couleur de la barre de vie correspondante
+    healthBar.classList.add('health-bar-low'); // Modifier la couleur de la barre de vie correspondante
     aHealth -= 1;
     if (aHealth === 0) {
       // Le personnage A est vaincu
