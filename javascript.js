@@ -101,7 +101,9 @@ function animateB() {
       checkhealthB(); // Verifier HP PErsonnage
       if (fight == true){
         animateBackB(); // Faire revenir le personnage B à sa position initiale
+        setTimeout(function() {
           animateA(); // Exécuter l'animation A après que l'animation B soit terminée
+        }, 1000); // délai ajusté à la durée de l'animation animateBackB (1000ms)
     }}
   }, 50);
 }
