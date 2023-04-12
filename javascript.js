@@ -34,6 +34,8 @@ healthBarB.style.top = -healthBarHeight + 'px';
 healthBarB.style.width = healthBarWidth + 'px';
 
 
+
+
 // Animer le personnage A
 function animateA() {
   aPosition += 15; // Augmenter la position de 10 pixels à chaque frame
@@ -54,7 +56,7 @@ function reduceAHealth() {
     healthBar.style.backgroundColor = 'yellow'; // Modifier la couleur de la barre de vie du personnage A
     }
 
-    if (aHealth === 2) {
+    if (aHealth === 1) {
       const healthBar = healthBarB;
       healthBar.style.backgroundColor = 'orange'; // Modifier la couleur de la barre de vie du personnage A
       }
@@ -105,7 +107,7 @@ function reduceBHealth() {
     healthBar.style.backgroundColor = 'yellow'; // Modifier la couleur de la barre de vie du personnage A
     }
 
-    if (aHealth === 2) {
+    if (aHealth === 1) {
       const healthBar = healthBarA;
       healthBar.style.backgroundColor = 'orange'; // Modifier la couleur de la barre de vie du personnage A
       }
@@ -123,12 +125,18 @@ function animateBackB() {
   let backAnimationInterval = setInterval(function() {
     bPosition += 15; // Diminuer la position de 10 pixels à chaque frame
     characterB.style.left = bPosition + 'px'; // Déplacer le personnage B vers la gauche
-    if (bPosition >= 600) { // Arrêter l'animation lorsque le personnage B est revenu à sa position initiale
+    if (bPosition >= 500) { // Arrêter l'animation lorsque le personnage B est revenu à sa position initiale
       clearInterval(backAnimationInterval);
     }
   }, 50);
+
+  if (aHealth > 0 && bHealth > 0) { // Si les deux personnages sont toujours en vie, l'animation doit se répéter
+    //setInterval(animateA, 50);
+    animateA();
+    }else {
+      alert("Vous avez perdu !");
+    }
 }
 
 // Lancer l'animation
 const animationInterval = setInterval(animateA, 50);
-
