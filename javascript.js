@@ -12,6 +12,8 @@ const characterAHealthBars = getCharacterAHealthBars();
 let aHealth = 3; // Niveau de santé initial du personnage A
 let bHealth = 3; // Niveau de santé initial du personnage B
 
+var fight = true;
+
 // Définir les positions initiales
 let aPosition = 200;
 let bPosition = 600;
@@ -40,11 +42,14 @@ healthBarB.style.width = healthBarWidth + 'px';
 function animateA() {
   aPosition += 15; // Augmenter la position de 10 pixels à chaque frame
   characterA.style.left = aPosition + 'px'; // Déplacer le personnage A vers la droite
+
   if (aPosition >= bPosition - 185) { // Arrêter l'animation lorsque le personnage A atteint le personnage B
     clearInterval(animationInterval);
     reduceAHealth(); // Réduire la santé du personnage A lorsque le personnage B est atteint
+    checkhealthA(); // Verifier HP PErsonnage
+    if (fight == true){
     animateBackA(); // Faire revenir le personnage A à sa position initiale
-  }
+  }}
 }
 
 function reduceAHealth() {
@@ -93,8 +98,11 @@ function animateB() {
     if ((bDirection === 1 && bPosition >= bEnd) || (bDirection === -1 && bPosition <= bEnd)) { // Arrêter l'animation lorsque le personnage B atteint le personnage A
       clearInterval(bAnimationInterval);
       reduceBHealth(); // Réduire la santé du personnage A lorsque le personnage B est atteint
-      animateBackB(); // Faire revenir le personnage B à sa position initiale
-    }
+      checkhealthB(); // Verifier HP PErsonnage
+      if (fight == true){
+        animateBackB(); // Faire revenir le personnage B à sa position initiale
+          animateA(); // Exécuter l'animation A après que l'animation B soit terminée
+    }}
   }, 50);
 }
 
@@ -120,6 +128,29 @@ function reduceBHealth() {
   }
 }
 
+//verifier HP 
+function checkhealthA(){
+  if (aHealth > 1 && bHealth > 1) { // Si les deux personnages sont toujours en vie, l'animation doit se répéter
+
+    }else {
+      fight = false;
+      alert("Vous avez perdu !");
+     // clearInterval(backAnimationInterval);
+    }
+}
+
+//verifier HP 
+function checkhealthB(){
+  if (aHealth > 1 && bHealth > 1) { // Si les deux personnages sont toujours en vie, l'animation doit se répéter
+
+    
+    }else {
+      fight = false;
+      alert("Vous avez perdu !");
+     // clearInterval(backAnimationInterval);
+    }
+}
+
 // Animer le personnage B pour revenir à sa position initiale
 function animateBackB() {
   let backAnimationInterval = setInterval(function() {
@@ -130,12 +161,7 @@ function animateBackB() {
     }
   }, 50);
 
-  if (aHealth > 0 && bHealth > 0) { // Si les deux personnages sont toujours en vie, l'animation doit se répéter
-    //setInterval(animateA, 50);
-    animateA();
-    }else {
-      alert("Vous avez perdu !");
-    }
+
 }
 
 // Lancer l'animation
