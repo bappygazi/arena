@@ -2,14 +2,6 @@
 const characterA = document.getElementById('character-a');
 const characterB = document.getElementById('character-b');
 
-// créer un élément div pour le message
-var message = document.createElement('div');
-message.textContent = 'Cliquez ici pour commencer!';
-message.style.position = 'absolute';
-message.style.top = '50%';
-message.style.left = '50%';
-message.style.transform = 'translate(-50%, -50%)';
-document.body.appendChild(message);
 
 const characterABar = document.getElementById('character-a-bar');
 function getCharacterAHealthBars() {
