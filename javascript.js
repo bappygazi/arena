@@ -9,7 +9,7 @@ function getCharacterAHealthBars() {
 
 const characterAHealthBars = getCharacterAHealthBars();
 
-let aHealth = 3; // Niveau de santé initial du personnage A
+let aHealth = 3 // Niveau de santé initial du personnage A
 let bHealth = 3; // Niveau de santé initial du personnage B
 
 var fight = true;
@@ -40,16 +40,22 @@ healthBarB.style.width = healthBarWidth + 'px';
 
 // Animer le personnage A
 function animateA() {
+  if (fight == true){
   aPosition += 15; // Augmenter la position de 10 pixels à chaque frame
   characterA.style.left = aPosition + 'px'; // Déplacer le personnage A vers la droite
 
   if (aPosition >= bPosition - 185) { // Arrêter l'animation lorsque le personnage A atteint le personnage B
     clearInterval(animationInterval);
+    if (fight == true){
     reduceAHealth(); // Réduire la santé du personnage A lorsque le personnage B est atteint
     checkhealthA(); // Verifier HP PErsonnage
     if (fight == true){
     animateBackA(); // Faire revenir le personnage A à sa position initiale
-  }}
+    setTimeout(function() {
+      // cette fonction est vide
+    }, 1000); // délai de 1000 millisecondes (2 secondes)
+  }}}
+}
 }
 
 function reduceAHealth() {
@@ -102,8 +108,9 @@ function animateB() {
       if (fight == true){
         animateBackB(); // Faire revenir le personnage B à sa position initiale
         setTimeout(function() {
-          animateA(); // Exécuter l'animation A après que l'animation B soit terminée
-        }, 1000); // délai ajusté à la durée de l'animation animateBackB (1000ms)
+        bPosition = 600;
+        setInterval(animateA, 50);
+      }, 1000);// Exécuter l'animation A après que l'animation B soit terminée
     }}
   }, 50);
 }
@@ -117,12 +124,12 @@ function reduceBHealth() {
     healthBar.style.backgroundColor = 'yellow'; // Modifier la couleur de la barre de vie du personnage A
     }
 
-    if (aHealth === 1) {
+    if (bHealth === 1) {
       const healthBar = healthBarA;
       healthBar.style.backgroundColor = 'orange'; // Modifier la couleur de la barre de vie du personnage A
       }
 
-    if (aHealth === 0) {
+    if (bHealth === 0) {
     // Le personnage A est vaincu
     const healthBar = healthBarA;
     healthBar.style.backgroundColor = 'red'; // Modifier la couleur de la barre de vie du personnage A
@@ -132,23 +139,23 @@ function reduceBHealth() {
 
 //verifier HP 
 function checkhealthA(){
-  if (aHealth > 1 && bHealth > 1) { // Si les deux personnages sont toujours en vie, l'animation doit se répéter
+  if (aHealth > 0 && bHealth > 0) { // Si les deux personnages sont toujours en vie, l'animation doit se répéter
 
     }else {
       fight = false;
-      alert("Vous avez perdu !");
+     //alert("Vous avez perdu !");
      // clearInterval(backAnimationInterval);
     }
 }
 
 //verifier HP 
 function checkhealthB(){
-  if (aHealth > 1 && bHealth > 1) { // Si les deux personnages sont toujours en vie, l'animation doit se répéter
+  if (aHealth > 0 && bHealth > 0) { // Si les deux personnages sont toujours en vie, l'animation doit se répéter
 
     
     }else {
       fight = false;
-      alert("Vous avez perdu !");
+      //alert("Vous avez perdu !");
      // clearInterval(backAnimationInterval);
     }
 }
