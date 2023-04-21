@@ -139,4 +139,20 @@ function startFight() {
   }
 }
 
-startFight();
+function animate() {
+  // animation A -> réduire la santé de B -> animation de retour A
+  animateA();
+  reduceBHealth();
+  animateBackA();
+
+  // animation B -> réduire la santé de A -> animation de retour B
+  animateB();
+  reduceAHealth();
+  animateBackB();
+
+  // boucler tant que les points de vie ne sont pas à 0
+  if (aHealth > 0 && bHealth > 0) {
+    setTimeout(animate, 2000); // attendre 2 secondes avant de boucler
+  }
+}
+
