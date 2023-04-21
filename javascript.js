@@ -3,6 +3,15 @@ const characterA = document.getElementById('character-a');
 const characterB = document.getElementById('character-b');
 
 
+//var clicked = false;
+
+//c.addEventListener("click", function() {
+//clicked = true;
+//});
+
+
+
+
 const characterABar = document.getElementById('character-a-bar');
 function getCharacterAHealthBars() {
   return characterABar.querySelectorAll('.health-bar');
@@ -176,5 +185,6 @@ function animateBackB() {
 
 
 // Lancer l'animation
+//if (clicked) {
 const animationInterval = setInterval(animateA, 50);
-
+//}
