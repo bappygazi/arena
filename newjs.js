@@ -1,3 +1,42 @@
+// Récupérer les éléments DOM pour les personnages
+const characterA = document.getElementById('character-a');
+const characterB = document.getElementById('character-b');
+
+
+const characterABar = document.getElementById('character-a-bar');
+function getCharacterAHealthBars() {
+  return characterABar.querySelectorAll('.health-bar');
+}
+
+const characterAHealthBars = getCharacterAHealthBars();
+
+
+var fight = true;
+
+// Définir les positions initiales
+let aPosition = 200;
+let bPosition = 600;
+
+// Créer des éléments pour les barres de vie
+const healthBarA = document.createElement('div');
+healthBarA.classList.add('health-bar');
+characterA.appendChild(healthBarA);
+
+const healthBarB = document.createElement('div');
+healthBarB.classList.add('health-bar');
+characterB.appendChild(healthBarB);
+
+// Positionner les barres de vie
+const healthBarHeight = 10;
+const healthBarWidth = characterA.offsetWidth / 3;
+healthBarA.style.top = -healthBarHeight + 'px';
+healthBarA.style.width = healthBarWidth + 'px';
+healthBarB.style.top = -healthBarHeight + 'px';
+healthBarB.style.width = healthBarWidth + 'px';
+
+
+
+
 function startFight() {
   let aHealth = 100;
   let bHealth = 100;
@@ -10,7 +49,7 @@ function startFight() {
   setTimeout(() => {
     message.style.display = 'none';
     animateA();
-  }, 3000);
+  }, 1000);
 
   function animateA() {
     const elem = document.getElementById('characterA');
@@ -99,3 +138,5 @@ function startFight() {
     document.body.appendChild(message);
   }
 }
+
+startFight();
