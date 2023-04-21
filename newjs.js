@@ -34,101 +34,77 @@ healthBarA.style.width = healthBarWidth + 'px';
 healthBarB.style.top = -healthBarHeight + 'px';
 healthBarB.style.width = healthBarWidth + 'px';
 
+let aHealth = 30;
+let bHealth = 30;
 
 
-
-function startFight() {
-  let aHealth = 100;
-  let bHealth = 100;
-  
-  const message = document.createElement('div');
-  message.classList.add('message');
-  message.innerHTML = 'Fight starts in 3 seconds!';
-  document.body.appendChild(message);
-
-  setTimeout(() => {
-    message.style.display = 'none';
-    animateA();
-  }, 1000);
 
   function animateA() {
-    const elem = document.getElementById('characterA');
-    let pos = 0;
-    const id = setInterval(frame, 20);
-    function frame() {
-      if (pos === 550) {
-        clearInterval(id);
-        reduceBHealth();
-      } else {
-        pos++;
-        elem.style.left = pos + 'px';
-      }
+    aPosition += 15; // Augmenter la position de 10 pixels à chaque frame
+    characterA.style.left = aPosition + 'px'; // Déplacer le personnage A vers la droite
+  
+    if (aPosition >= bPosition - 185) { // Arrêter l'animation lorsque le personnage A atteint le personnage B
+      clearInterval(animationInterval);
+      setTimeout(function() {
+        // cette fonction est vide
+      }, 1000); // délai de 1000 millisecondes (2 secondes)
     }
   }
 
   function reduceBHealth() {
     bHealth -= 10;
-    document.getElementById('healthBarB').style.width = bHealth + '%';
+    //document.getElementById('healthBarB').style.width = bHealth + '%';
     if (bHealth <= 0) {
       endFight('A');
       return;
     }
-    animateBackA();
   }
 
   function animateBackA() {
-    const elem = document.getElementById('characterA');
-    let pos = 550;
-    const id = setInterval(frame, 20);
-    function frame() {
-      if (pos === 0) {
-        clearInterval(id);
-        animateB();
-      } else {
-        pos--;
-        elem.style.left = pos + 'px';
+    let backAnimationInterval = setInterval(function() {
+      aPosition -= 15; // Diminuer la position de 10 pixels à chaque frame
+      characterA.style.left = aPosition + 'px'; // Déplacer le personnage A vers la gauche
+      if (aPosition <= 200) { // Arrêter l'animation lorsque le personnage A est revenu à sa position initiale
+        clearInterval(backAnimationInterval);
       }
-    }
+    }, 50);
   }
 
   function animateB() {
-    const elem = document.getElementById('characterB');
-    let pos = 550;
-    const id = setInterval(frame, 20);
-    function frame() {
-      if (pos === 0) {
-        clearInterval(id);
-        reduceAHealth();
-      } else {
-        pos--;
-        elem.style.left = pos + 'px';
-      }
-    }
+    let bStart = bPosition;
+    let bEnd = aPosition + 85; // Ajouter un petit décalage pour que les personnages ne se chevauchent pas
+    let bDirection = bStart < bEnd ? 1 : -1; // Déterminer la direction de l'animation
+    let bAnimationInterval = setInterval(function() {
+      bPosition += bDirection * 15; // Augmenter ou diminuer la position de 10 pixels à chaque frame en fonction de la direction
+      characterB.style.left = bPosition + 'px'; // Déplacer le personnage B
+      if ((bDirection === 1 && bPosition >= bEnd) || (bDirection === -1 && bPosition <= bEnd)) { // Arrêter l'animation lorsque le personnage B atteint le personnage A
+        clearInterval(bAnimationInterval);
+        if (fight == true){
+          setTimeout(function() {
+          bPosition = 600;
+          setInterval(animateA, 50);
+        }, 1000);// Exécuter l'animation A après que l'animation B soit terminée
+      }}
+    }, 50);
   }
 
   function reduceAHealth() {
     aHealth -= 10;
-    document.getElementById('healthBarA').style.width = aHealth + '%';
+    //document.getElementById('healthBarA').style.width = aHealth + '%';
     if (aHealth <= 0) {
       endFight('B');
       return;
     }
-    animateBackB();
   }
 
   function animateBackB() {
-    const elem = document.getElementById('characterB');
-    let pos = 0;
-    const id = setInterval(frame, 20);
-    function frame() {
-      if (pos === 550) {
-        clearInterval(id);
-        animateA();
-      } else {
-        pos++;
-        elem.style.left = pos + 'px';
+    let backAnimationInterval = setInterval(function() {
+      bPosition += 15; // Diminuer la position de 10 pixels à chaque frame
+      characterB.style.left = bPosition + 'px'; // Déplacer le personnage B vers la gauche
+      if (bPosition >= 500) { // Arrêter l'animation lorsque le personnage B est revenu à sa position initiale
+        clearInterval(backAnimationInterval);
       }
-    }
+    }, 50);
   }
 
   function endFight(winner) {
@@ -137,7 +113,23 @@ function startFight() {
     message.innerHTML = `The winner is ${winner}!`;
     document.body.appendChild(message);
   }
+
+
+
+function gameLoop() {
+  if (aHealth <= 0 || bHealth <= 0) {
+    return;
+  }
+  animateA();
+  reduceBHealth();
+  animateBackA();
+  setTimeout(function() {
+    animateB();
+    reduceAHealth();
+    animateBackB();
+    setTimeout(gameLoop, 1000);
+  }, 1000);
 }
 
-
+gameLoop();
 
