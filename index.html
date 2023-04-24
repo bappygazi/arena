@@ -5,11 +5,34 @@
     <link rel="stylesheet" type="text/css" href="style.css">
     <style>
       #animation-container {
-        position: relative;
+        position: absolute;
         width: 800px;
         height: 400px;
-        background-image: url('backgrounddddddd.png');
+        background-image: url('background.png');
         background-size: cover;
+        position: absolute;
+        left: 50%;
+        transform: translate( -50%);
+      }
+      #top-left-a {
+        position: absolute;
+        left: 0px;
+        top: 0px;
+        width: 130px;
+        height: 150px;
+        background-image: url('Aimg.png');
+        background-size: contain;
+        background-repeat: no-repeat;
+      }
+      #top-right-b {
+        position: absolute;
+        right: 0px;
+        top: 0px;
+        width: 130px;
+        height: 150px;
+        background-image: url('Bimg.png');
+        background-size: contain;
+        background-repeat: no-repeat;
       }
       #character-a {
         position: absolute;
@@ -31,25 +54,26 @@
         background-size: contain;
         background-repeat: no-repeat;
       }
+      #ko {
+        position: absolute;
+        left: 300px;
+        width: 200px;
+        height: 400px;
+        background-image: url('ko.png');
+        background-size: contain;
+        background-repeat: no-repeat;
+      }
     </style>
   </head>
   <body>
     <div id="animation-container">
+      <div id="top-right-b"></div>
+      <div id="top-left-a"></div>
       <div id="character-a"></div>
       <div id="character-b"></div>
+      <div id="ko"></div>
+      <div id="victory-message"></div>
     </div>
-    <div class="character-bar" id="character-a-bar">
-      <div class="health-bar"></div>
-      <div class="health-bar"></div>
-      <div class="health-bar"></div>
-    </div>
-    
-    <div class="character-bar" id="character-b-bar">
-      <div class="health-bar"></div>
-      <div class="health-bar"></div>
-      <div class="health-bar"></div>
-    </div>
-    
-    <script src="javascript.js"></script>
+    <script src="js2.js"></script>
   </body>
 </html>
