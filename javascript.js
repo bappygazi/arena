@@ -2,6 +2,7 @@
 const characterA = document.getElementById('character-a');
 const characterB = document.getElementById('character-b');
 
+
 const victoryMessage = document.getElementById('victory-message');
 victoryMessage.style.color = "white";
 victoryMessage.style.textAlign = 'center';
