@@ -1,6 +1,17 @@
 // Récupérer les éléments DOM pour les personnages
 const characterA = document.getElementById('character-a');
 const characterB = document.getElementById('character-b');
+var koContainer = document.getElementById("ko-container");
+var startContainer = document.getElementById("start-container");
+
+//sons du jeu 
+var soundEffect = new Audio("smash.mp3");
+var soundEffect2 = new Audio("smash2.mp3");
+var soundstart = new Audio("start.mp3");
+var soundko = new Audio("ko.mp3");
+var sounda = new Audio("a.mp3");
+var soundb = new Audio("b.mp3");
+
 
 
 const victoryMessage = document.getElementById('victory-message');
@@ -56,6 +67,9 @@ let bSpeed = 101; // Vitesse du personnage B
 // Définir une variable pour savoir si l'animation a déjà été lancée
 let animationLaunched = false;
 
+//Afficher message tap to start
+startContainer.style.display = "block";
+
 
 // PERSONNAGE A COMMENCE A JOUER 
 // PERSONNAGE A COMMENCE A JOUER 
@@ -79,8 +93,10 @@ function animateA() {
     if (aHealth > 0 && bHealth > 0) {
       animateBackA(); // Faire revenir le personnage A à sa position initiale
     }else {  
-      victoryMessage.textContent = "A WON!";
-      victoryMessage.appendChild(replayMessage);
+      //victoryMessage.textContent = "A WON!";
+      //victoryMessage.appendChild(replayMessage);
+      soundko.play();
+      koContainer.style.display = "block";
       animationLaunched = false;
       document.body.addEventListener('click', handleClick);
     }
@@ -114,8 +130,10 @@ function animateB() {
       if (aHealth > 0 && bHealth > 0) {
         animateBackB(); // Faire revenir le personnage B à sa position initiale
       }else {  
-        victoryMessage.textContent = "B WON!";
-        victoryMessage.appendChild(replayMessage);
+        //victoryMessage.textContent = "B WON!";
+        //victoryMessage.appendChild(replayMessage);
+        soundko.play();
+        koContainer.style.display = "block";
         animationLaunched = false;
         document.body.addEventListener('click', handleClick);
       }
@@ -142,6 +160,9 @@ function animateBackB() {
 
 function reduceAHealth() {
   if (aHealth > 0) {
+    // Joue le son d'effet
+    soundEffect.play();
+    sounda.play();
     aHealth -= aDamage;
     
     if (aHealth <= 75) {
@@ -169,6 +190,9 @@ function reduceAHealth() {
 
 function reduceBHealth() {
   if (bHealth > 0) {
+    // Joue le son d'effet
+    soundEffect2.play();
+    soundb.play();
     bHealth -= bDamage;
 
     if (bHealth <= 75) {
@@ -220,8 +244,10 @@ function RanimateB() {
       if (aHealth > 0 && bHealth > 0) {
         RanimateBackB(); // Faire revenir le personnage B à sa position initiale
       }else {  
-        victoryMessage.textContent = "B WON!";
-        victoryMessage.appendChild(replayMessage);
+        //victoryMessage.textContent = "B WON!";
+        //victoryMessage.appendChild(replayMessage);
+        soundko.play();
+        koContainer.style.display = "block";
         animationLaunched = false;
         document.body.addEventListener('click', handleClick);
       }
@@ -254,8 +280,10 @@ function RanimateA() {
       if (aHealth > 0 && bHealth > 0) {
         RanimateBackA(); // Faire revenir le personnage A à sa position initiale
       }else {  
-        victoryMessage.textContent = "A WON!";
-        victoryMessage.appendChild(replayMessage);
+        //victoryMessage.textContent = "A WON!";
+        //victoryMessage.appendChild(replayMessage);
+        soundko.play();
+        koContainer.style.display = "block";
         animationLaunched = false;
         document.body.addEventListener('click', handleClick);
       }
@@ -349,6 +377,9 @@ function RreduceBHealth() {
 function handleClick() {
   if (!animationLaunched) { // Vérifier si l'animation n'a pas encore été lancée
 
+    //Jouer son Start
+    soundstart.play();
+
     // valeur a modifier selon personnage 
     aHealth = 100; 
     bHealth = 100;
@@ -362,6 +393,8 @@ function handleClick() {
     healthBarB.style.backgroundColor = 'green';
     healthBarA.style.backgroundColor = 'green';
     victoryMessage.textContent = "";
+    koContainer.style.display = "none";
+    startContainer.style.display = "none";
 
     //lancement animation
     if (aSpeed >= bSpeed){
