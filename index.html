@@ -44,6 +44,17 @@
         background-size: contain;
         background-repeat: no-repeat;
       }
+      #character-a-ko {
+        position: absolute;
+        left: 200px;
+        top: 200px;
+        width: 100px;
+        height: 100px;
+        background-image: url('AKO.png');
+        background-size: contain;
+        background-repeat: no-repeat;
+        display: none;
+      }
       #character-b {
         position: absolute;
         right: 200px;
@@ -85,6 +96,7 @@
       <div id="top-right-b"></div>
       <div id="top-left-a"></div>
       <div id="character-a"></div>
+      <div id="character-a-ko"></div>
       <div id="character-b"></div>
       <div id="ko-container">
         <img src="ko.png" alt="KO" id="ko-img">
@@ -94,6 +106,6 @@
       </div>
       <div id="victory-message"></div>
     </div>
-    <script src="javascript.js"></script>
+    <script src="js2.js"></script>
   </body>
 </html>
