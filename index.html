@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Animation en JavaScript et HTML</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <style>
+      #animation-container {
+        position: absolute;
+        width: 800px;
+        height: 400px;
+        background-image: url('background.png');
+        background-size: cover;
+        position: absolute;
+        left: 50%;
+        transform: translate( -50%);
+      }
+      #top-left-a {
+        position: absolute;
+        left: 0px;
+        top: 0px;
+        width: 130px;
+        height: 150px;
+        background-image: url('Aimg.png');
+        background-size: contain;
+        background-repeat: no-repeat;
+      }
+      #top-right-b {
+        position: absolute;
+        right: 0px;
+        top: 0px;
+        width: 130px;
+        height: 150px;
+        background-image: url('Bimg.png');
+        background-size: contain;
+        background-repeat: no-repeat;
+      }
+      #character-a {
+        position: absolute;
+        left: 200px;
+        top: 230px;
+        width: 100px;
+        height: 100px;
+        background-image: url('A.png');
+        background-size: contain;
+        background-repeat: no-repeat;
+      }
+      #character-a-ko {
+        position: absolute;
+        left: 200px;
+        top: 230px;
+        width: 100px;
+        height: 100px;
+        background-image: url('AKO.png');
+        background-size: contain;
+        background-repeat: no-repeat;
+        display: none;
+      }
+      #character-a-hit {
+        position: absolute;
+        left: 200px;
+        top: 230px;
+        width: 100px;
+        height: 100px;
+        background-image: url('AHIT.png');
+        background-size: contain;
+        background-repeat: no-repeat;
+        display: none;
+      }
+      #character-a-smashg {
+        position: absolute;
+        left: 200px;
+        top: 230px;
+        width: 100px;
+        height: 100px;
+        background-image: url('ASMASH.png');
+        background-size: contain;
+        background-repeat: no-repeat;
+        display: none;
+      }
+      #character-b {
+        position: absolute;
+        right: 200px;
+        top: 238px;
+        width: 100px;
+        height: 100px;
+        background-image: url('B.png');
+        background-size: contain;
+        background-repeat: no-repeat;
+      }
+      #ko-container {
+        position: absolute;
+        left: 300px;
+        width: 200px;
+        height: 400px;
+        background-image: url('ko.png');
+        background-size: contain;
+        background-repeat: no-repeat;
+        display: none;
+      }
+      #start-container {
+        position: absolute;
+        left: 300px;
+        width: 200px;
+        height: 400px;
+        background-image: url('start.png');
+        background-size: contain;
+        background-repeat: no-repeat;
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <audio id="sound-effect" src="smash.mp3"></audio>
+    <audio id="sound-effect2" src="smash2.mp3"></audio>
+    <audio id="sound-start" src="start.mp3"></audio>
+    <audio id="sound-ko" src="ko.mp3"></audio>
+    <div id="animation-container">
+      
+      <div id="character-a"></div>
+      <div id="character-a-ko"></div>
+      <div id="character-a-hit"></div>
+      <div id="character-a-smash"></div>
+      <div id="character-b"></div>
+      <div id="ko-container">
+        <img src="ko.png" alt="KO" id="ko-img">
+      </div>
+      <div id="start-container">
+        <img src="start.png" alt="KO" id="ko-img">
+      </div>
+      <div id="victory-message"></div>
+    </div>
+    <script src="js2.js"></script>
+  </body>
+</html>
